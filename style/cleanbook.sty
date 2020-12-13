@@ -1,0 +1,109 @@
+\ProvidesPackage{cleanbook}
+
+\usepackage[english,activeacute]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{greekctr}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{bbold}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{color,graphicx}
+%\usepackage{txfonts}
+\usepackage{memhfixc} 
+\usepackage{bm}
+\usepackage{calc}
+\usepackage{minitoc} 
+\usepackage{colortbl}
+\usepackage{euscript}
+\usepackage{bbding}
+
+\usepackage[bookmarksnumbered=true]{hyperref} 
+\hypersetup{
+     colorlinks = true,
+     linkcolor = blue,
+     anchorcolor = blue,
+     citecolor = magenta,
+     filecolor = blue,
+     urlcolor = magenta
+     }
+
+\def\thesection{\Roman{section}}
+\def\thesubsection{\arabic{subsection}} 
+\def\thesubsubsection{\Alph{subsubsection}}
+\def\theparagraph{\greek{paragraph}}
+
+\renewcommand{\mtcfont}{\small\rm}
+\renewcommand{\mtcSfont}{\small\bf}
+\renewcommand{\mtcSfont}{\small\normalfont}
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]%
+   {\markboth{\MakeUppercase{chapter \thechapter}.\ \ #1}{}}
+\renewcommand{\sectionmark}[1]%
+   {\markright{\MakeUppercase{\thesection}.\ #1}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\helv}{%
+   \fontfamily{phv}\fontseries{b}\fontsize{9}{11}\selectfont}
+\fancyhf{}
+\fancyfoot[LE,RO]{\helv \thepage}
+\fancyhead[RO]{\helv \rightmark}
+\fancyhead[LE]{\helv \leftmark}
+
+\renewcommand{\theequation}{\thesection-\arabic{equation}} 
+
+\font\big=bchb7t at 32pt 
+
+\def\Re{\mathbb{R}}
+\def\Iff{\Longleftrightarrow}
+\def\Then{\Rightarrow}
+\def\Neht{\Leftarrow}
+\def\TendsTo{\rightarrow}
+\def\Abs#1{\left|#1\right|}
+
+\def\P{\EuScript{P}}
+\def\T{\EuScript{T}}
+\def\F{\EuScript{F}}
+\def\B{\EuScript{B}}
+\def\S{\EuScript{S}}
+
+\def\iff{\emph{iff}}
+\def\det#1{\text{det}\left[#1\right]}
+\def\norm#1{\left|\left|#1\right|\right|}
+\def\brackets#1{\left(#1\right)}
+\def\partialDiff#1#2{\frac{\partial#1}{\partial#2}}
+\def\totalDiff#1#2{\frac{d#1}{d#2}}
+\def\defref#1{\textbf{Def.}\,\ref{#1}}
+
+\def\setdef#1#2{\left\{#1\,:\,#2\right\}}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{theorem}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+
+\theoremstyle{definition}
+\newtheorem{example}{\HandPencilLeft\ {\scshape Example}}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\def\MiDo{%
+\textit{\hbox{$\sqrt{\text{\phantom{M}}}
+$\kern-0.40cm{$\mathcal{M}$\lower0.11cm\hbox{\kern-0.05cm\hbox{i}}
+\kern-0.1cm\hbox{$\mathcal{D}$\lower0.09cm\hbox{\kern-0.1cm\hbox{$\phi$}}}}}}}
+
+\chapterstyle{veelo}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
