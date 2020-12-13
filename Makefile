@@ -21,6 +21,6 @@ pdf: $(SOURCE).tex
 	# $(OPEN) -a Preview.app $(OUTPUT)/$(SOURCE).pdf
 
 .PHONY: clean
-clean :
-	# remove all TeX-generated files in your local directory
-	$(RM) -f -- *.aux *.bak *.bbl *.blg *.log *.out *.toc *.tdo _region.* *.maf* *.mtc*
+clean : 
+	echo "Removing all TeX-generated files..."
+	$(RM) -f -- *.synctex.gz *.aux *.bak *.bbl *.blg *.log *.out *.toc *.tdo _region.* *.maf* *.mtc*
