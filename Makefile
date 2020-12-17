@@ -1,26 +1,45 @@
-PDFLATEX = pdflatex
-SH 	 = /bin/bash
+PROJECT = 'topologybook' 
+MAIN = topology
+SRC_DIR = chapters
+FIGS_DIR = figs
+BIB_DIR = bib
+STYLE_DIR = style
+OUTPUT_DIR = out
 
-MKDIR_P = mkdir -p
-MV 	= mv
-CP 	= cp
-OPEN	= open
-OUTPUT 	= output
-SOURCE  = topology
+TEX_SOURCES = Makefile \
+              $(MAIN).tex \
+              $(SRC_DIR)/ch-1.tex \
+              # $(SRC_DIR)/introduction.tex \
+              # $(BIB_DIR)/references.bib \
+              $(STYLE_DIR)/cleanbook.sty 
 
-default : pdf
+FIGURES := $(shell find figs/* -type f)
 
-.PHONY: pdf
-pdf: $(SOURCE).tex
-	$(MKDIR_P) $(OUTPUT) 
-	$(PDFLATEX) $(SOURCE).tex 
-	$(PDFLATEX) $(SOURCE).tex 
-	$(PDFLATEX) $(SOURCE).tex 
-	$(MV) `ls $(SOURCE).*` $(OUTPUT) 
-	$(CP) $(OUTPUT)/$(SOURCE).tex $(SOURCE).tex 
-	# $(OPEN) -a Preview.app $(OUTPUT)/$(SOURCE).pdf
+SHELL=/bin/bash
+DATE = $(shell date +"%d%b%Y")
+OPT = --interaction=nonstopmode
 
-.PHONY: clean
-clean : 
-	echo "Removing all TeX-generated files..."
-	$(RM) -f -- *.synctex.gz *.aux *.bak *.bbl *.blg *.log *.out *.toc *.tdo _region.* *.maf* *.mtc*
+all: $(MAIN).pdf
+
+$(MAIN).pdf: $(TEX_SOURCES) $(FIGURES)
+	latexmk -pdf -pvc -output-directory=$(OUTPUT_DIR) -pdflatex="pdflatex $(OPT)" $(MAIN)
+
+once: 
+	pdflatex $(MAIN)
+
+clean: 
+	rm -f $(OUTPUT_DIR)/$(MAIN).{log,blg,bbl,aux,out,toc,idx,bcf,mtc,mtc0,maf,run.xml,ind,ilg,fls,fdb_latexmk}
+
+targz:
+	$(MAKE) clean
+	$(MAKE) all
+	$(MAKE) clean
+	tar czf $(PROJECT)_$(DATE).tgz $(TEX_SOURCES) $(FIGURES)
+
+zip:
+	$(MAKE) clean
+	$(MAKE) all
+	$(MAKE) clean
+	zip -q $(PROJECT)_$(DATE).zip $(TEX_SOURCES) $(FIGURES)
+	
+.PHONY: clean all
