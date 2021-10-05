@@ -45,7 +45,7 @@ The elements of $\T$ are called the \textbf{open subsets} of $X$.
 
 For practical purposes, we might simply use $X$ instead of $(X, \T)$, keeping in mind
 that $\T$ changes with $X$.
-The first topological concept we introduce based upon the concept of \emph{open set} is
+The first topological concept we introduce based upon the concept of \emph{open subset} is
 the concept of \emph{neighbourhood}.
 
 \begin{definition}
@@ -78,7 +78,7 @@ of open subsets is open according to \defref{def:topology}-2.
 
 The intuitive idea to develop so far is that a neighbourhood of a point $x$ is a set
 $U$ which contains all the points ``around'' $x$, which also means that $U$ is open
-\iff this set only contains all the points surrounding every of its points.
+\iff\,this set only contains all the points surrounding every of its points.
 
 \begin{example}
 	Let $X$ be a set, the \emph{trivial topology} is $\T=\{\emptyset, X\}$, and the
@@ -93,7 +93,7 @@ On the other hand, the discrete topology is the largest one possible, given that
 the possible subsets of $X$ are open.
 
 \begin{definition}
-	The elements $x\in X$ will be called \emph{points}.
+	The elements $x\in X$ will be called \emph{points} (or \emph{singletons}).
 	Thus, a point $x\in X$ is said to be \emph{isolated} if $\{x\}$ is an open subset
 	of $X$, i.e. $\{x\}\in \T$.
 \end{definition}
@@ -171,11 +171,11 @@ family to be a base of a topology:
 		$A\in\F$, so that $A=\bigcup\F_A$. Let $\F^*=\bigcup\limits_{\F_A\in\F}\F_A\subset\B$.
 		Then,  $\bigcup \F =\bigcup\F^*\in\T$.
 		
-		\item Let $A, B\in \T$, and $\F = \{B\in\B\,:\, B \subset(A\cap B)\}$.
-		Let us prove that $A\cap\B = \bigcup\F$:
+		\item Let $A, B\in \T$, and $\F = \{C\in\B\,:\, C \subset(A\cap B)\}$.
+		Let us prove that $A\cap B = \bigcup\F$:
 		\begin{itemize}
 			\item[\boxed{\supseteq}] This is a trivial proof: $\forall x\in\bigcup\F$ $\Then$
-			$x\in\setdef{B\in\B}{B\subset(A\cap B)}\ \Then\ x\in (A\cap B)$ $\Then$ 
+			$x\in\setdef{C\in\B}{C\subset(A\cap B)}\ \Then\ x\in (A\cap B)$ $\Then$ 
 			$\bigcup\F \subset (A\cap B)$.
 			\item[\boxed{\subseteq}] Let $x\in (A\cap B)$, according to $(\emph{2.})$, 
 			$\exists C\in \B$ such that $x\in C\subset (A\cap B)$ $\Then$ $x\in C\subset 
@@ -213,9 +213,7 @@ useful when defining topologies.
 \begin{definition}
 	\label{def:subbase}
 	Let $(X, \T)$ be a topological space. A family $\S\subset \T$ is a \textbf{subbase} 
-	of $(X, \T)$ \iff\ the family of finite intersections of elements of $\S$,  i.e. $\F 
-	= \setdef{\bigcap\limits_{i=1}^nS_k}{S_k\subset \S}$\footnote{Here we accept that 
-		$\bigcap \emptyset = X$.}, is a base of $(X, \T)$.
+	of $(X, \T)$ \iff\ the family of all finite intersections of elements of $\S$, namely $\I(\S)$, is a base of $(X, \T)$\footnote{The family of all finite intersections of elements of $\S$ means: $\I(\S) = \bigcap\limits_{S\in\mathcal{F}} S$, for all finite subsets $\mathcal{F}$ of $\S$. In particular for all subsets $\mathcal{F}$ of cardinality 0 (empty set, $\mathcal{F}_0=\emptyset$) or 1 (singletons, $\mathcal{F}_1=\{A\}$).}.
 \end{definition}
 
 The difference between subbases and bases is that the family of subsets does not have 
@@ -225,8 +223,17 @@ to satisfy any specific condition to be a subbase:
 	Let $X$ be a set, and $\S\subset \P X$ a family of subsets of $X$.
 	There exists a unique topology on $X$ with $\S$ as subbase, and it is smallest
 	(w.r.t. the inclusion) for which the elements of $\S$ are open.
+	\label{th:1-4}
 \end{theorem}
 
 \begin{proof}
-	The proof
+	To prove this result we will show that: 
+	$$
+	 \B\doteq \I(\S)=\left\{\bigcap\limits_{S\in\mathcal{F}} S=\bigcap\mathcal{F}\,:\,\mathcal{F}\subset \S\right\},
+	$$ 
+	satisfies the conditions of \thref{th:1-3}, as follows:
+	\begin{enumerate}
+	\item $\mathcal{F}_{0}=\emptyset$ is a finite subset, and $X=\bigcap \emptyset\in\B$, therefore $X\subset \bigcup\B$. Besides, all other finite subsets are $\mathcal{F}_{1}=\{A\}$ with $A\in\S\subset\P X$, $\bigcap\mathcal{F}_{1}\subset X$. Therefore $\bigcup \B\subset X$. Thus $\bigcup\B = X$.
+	\item 
+	\end{enumerate}
 \end{proof}
