@@ -226,7 +226,7 @@ to satisfy any specific condition to be a subbase:
 \begin{theorem}
 	Let $X$ be a set, and $\S\subset \P X$ a family of subsets of $X$.
 	There exists a unique topology on $X$ with $\S$ as subbase, and it is smallest
-	(w.r.t. the inclusion) for which the elements of $\S$ are open.
+	(w.r.t.\,the inclusion) for which the elements of $\S$ are open.
 	\label{th:1-4}
 \end{theorem}
 
@@ -247,5 +247,21 @@ to satisfy any specific condition to be a subbase:
 	\end{enumerate}
 	Thus, the conditions of the \thref{th:1-3} are fulfilled which means that
 	$\B$ is base of a topology in $X$, with $\S$ as a subbase.
+	Finally, to prove the uniqueness, let us consider a topology $\T'$ on $X$, 
+	such that $\forall S\in \S, S\in \T'$ $\Rightarrow$ $\forall B\in\B, B\in\T'$ 
+	$\Rightarrow$ $\T\subset \T'$, which also proves that $\B$ is the smallest.
 \end{proof}
+
+
+\begin{example}
+	Consider $\mathbb{R}^2$ endowed with the canonical Euclidean distance:
+	$$
+	d(x,y) =\sqrt{(x_1-y_1)^2+(x_2-y_2)^2},\ \forall x,y \in \mathbb{R}^2.
+	$$ 
+	An Euclidean open ball centred at $x$ with radius $\epsilon$ is defined as follows: 
+	$$
+	B_\epsilon(x) = \{z\in\mathbb{R}^2\,|\,d(x,z)<\epsilon\},
+	$$ 
+	which certainly contains 
+\end{example}
 
