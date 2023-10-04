@@ -41,8 +41,8 @@ zip:  ## Create a zip archive of the document
 	zip -q $(PROJECT)_$(DATE).zip $(ALL_SOURCES)
 	@echo $(ALL_SOURCES)
 	
-.PHONY: clean build pdf targz zip
-.DEFAULT_GOAL := help
+.PHONY: default book pdf clean build targz zip
+.DEFAULT_GOAL := default
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
