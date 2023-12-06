@@ -4,6 +4,7 @@
 \usepackage[latin1]{inputenc}
 \usepackage{greekctr}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{enumerate}
 \usepackage{bbold}
 \usepackage{fancybox}
@@ -89,17 +90,18 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
+
 \theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}[section]
+
 \theoremstyle{theorem}
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 
 \theoremstyle{definition}
 \newtheorem{example}{\HandPencilLeft\ {\scshape Example}}[section]
+\newtheorem*{remark}{\HandRight\ {\scshape Remark}}
 
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
 
 \def\MiDo{%
 \textit{\hbox{$\sqrt{\text{\phantom{M}}}

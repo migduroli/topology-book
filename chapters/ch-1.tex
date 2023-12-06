@@ -36,10 +36,10 @@ topology on $X$.
 The elements of $\T$ are called the \textbf{open subsets} of $X$.
 
 \begin{remark}
-	The property (\defref{def:topology}-2) could be rewritten in a much more concise by
+	The property (\defref{def:topology}-2) could be rewritten in a more concise way by
 	saying that, if $\F\subset\T$, then $\bigcup\F\in\T$.
 	Also, the third property can be readily extended to any finite amount of open sets
-	by induction, so that if $\{A_k\}_{k=1,\dots,n}$ with $A_k\in\T$, then
+	by induction, so that $\forall \{A_k\}_{k=1,\dots,n}$ with $A_k\in\T$, then
 	$\bigcap\limits_{k=1}^n A_k\in \T$.
 \end{remark}
 
@@ -50,7 +50,8 @@ the concept of \emph{neighbourhood}.
 
 \begin{definition}
 	\label{def:neighbourhood}
-	Let $C, U\subset X$, with $(X, \T)$ being a topological space. Then, $U$ is said to
+	Let $C, U\subset X$, with $(X, \T)$ being a topological space.
+	Then, $U$ is said to
 	be a \textbf{neighbourhood} of $C$ if $\exists A\in\T$ such that $C\subset A \subset U$.
 	The subset $U$ is said to be a neighbourhood of a point $x\in X$ if $U$ is a
 	neighbourhood of $\{x\}$.
@@ -60,8 +61,8 @@ the concept of \emph{neighbourhood}.
 The neighbourhoods of the points of a topological space determine the open sets of the topology:
 
 \begin{theorem}
-	Let $(X, \T)$ be a topological space. A subset $U\subset X$ is an open subset
-	\emph{if and only if} (iff) $U$ is neighbourhood of all its points.
+	Let $(X, \T)$ be a topological space.
+	A subset $U\subset X$ is an open subset \emph{if and only if} (iff) $U$ is neighbourhood of all its points.
 \end{theorem}
 
 \begin{proof} To prove this theorem will proceed with the demonstration of the left and
@@ -76,9 +77,9 @@ $U = \bigcup\F$ with $\F=\{V\in\T\,:\,V\subset U\}\,\Then\,U$ is open, since the
 of open subsets is open according to \defref{def:topology}-2.
 \end{proof}
 
-The intuitive idea to develop so far is that a neighbourhood of a point $x$ is a set
-$U$ which contains all the points ``around'' $x$, which also means that $U$ is open
-\iff\,this set only contains all the points surrounding every of its points.
+The intuitive idea we must have developed so far is that a neighbourhood of a point $x$ is a set
+$U$ which contains all the points ``\emph{around}'' $x$, which also means that $U$ is open
+\iff\,it only contains all the points surrounding every one of its points.
 
 \begin{example}
 	Let $X$ be a set, the \emph{trivial topology} is $\T=\{\emptyset, X\}$, and the
@@ -108,9 +109,9 @@ the possible subsets of $X$ are open.
 \begin{definition}
 	Let $(X, \T)$ be a topological space, and $\B = \{B \subset X\,:\, B \in \T\}\subset\T$
 	a family of open sets.
-	The family $\B$ is a \textbf{base} of $X$ \iff\, every open subset of $X$ can be
-	expressed as the union of elements of $\B$. In other words, $\B\subset\T$ is a base
-	of $(X,\T)$ if for every $U\in\T$ and $u\in U$, there is a $B\in \B$ such that
+	The family $\B$ is a \textbf{base} for $X$ \iff\, every open subset of $X$ can be
+	expressed as the union of elements of $\B$.
+	This is equivalent to say that, $\B\subset\T$ is a base for $(X,\T)$ if for every $U\in\T$ and $u\in U$, there is a $B\in \B$ such that
 	$u\in B\subset U$.
 	\label{def:base}
 \end{definition}
@@ -118,11 +119,11 @@ the possible subsets of $X$ are open.
 The convenience of introducing this concept becomes clear with the following two theorems:
 
 \begin{theorem}
-	Let $(X, \T)$ be a topological space, and $\B$ a base of $(X, \T)$.
+	Let $(X, \T)$ be a topological space, and $\B$ a base for $(X, \T)$.
 	The following two properties are satisfied:
 	\begin{enumerate}
 		\item $\bigcup\limits_{B\in\B} B \equiv \bigcup\B = X$
-		\item Let $A, B\in \B$ and $x\in A\cap B$, then there exists $C\in \B$ such
+		\item Let $A, B\in \B$ and $x\in A\cap B$, then $\exists C\in \B$ such
 		that $x\in C\subset (A\cap B)$
 	\end{enumerate}
 \end{theorem}
@@ -130,20 +131,21 @@ The convenience of introducing this concept becomes clear with the following two
 \begin{proof}
 	This proof is straightforward by using \defref{def:topology} and \defref{def:base}:
 	\begin{enumerate}
-		\item \noindent{$\boxed{\Rightarrow}$}  $\bigcup\B \subset X$ is trivial.
+		\item \noindent{$\boxed{\subseteq}$}  $\bigcup\B \subset X$ is trivial.
 
-		\noindent{$\boxed{\Leftarrow}$} Given that $X\in \T$ (hence it is an open
+		\noindent{$\boxed{\supseteq}$} Given that $X\in \T$ (hence it is an open
 		subset) $\Then$ $X$ can be expressed as the union of a family $\F\subset \B$
 		$\Then$ $X \subset \bigcup \F\subset \bigcup \B$.
 
-		\item Let $A, B\in \B$ $\Then$ $(A\cap B)\in \T$ $\Then$ according to
-		\defref{def:base}, $\exists C\in \B$ such that $x\in C\subset(A\cap B)$.
+		\item Let $A, B\in \B$ $\overset{\text{\defref{def:topology}}}{\Then}$
+		$(A\cap B)\in \T$ $\overset{\text{\defref{def:base}}}{\Then}$
+		$\exists C\in \B$ such that $x\in C\subset(A\cap B)$.
 	\end{enumerate}
 	With this, the theorem is proved to hold true.
 \end{proof}
 
 Interestingly, the two properties of the previous theorem are sufficient for a set
-family to be a base of a topology:
+family to be a base for a topology:
 
 \begin{theorem}
 	Let $X$ be a set and $\B\subset \P X$ a family of subsets of $X$ such that:
@@ -152,23 +154,24 @@ family to be a base of a topology:
 		\item If $A, B\in \B$ and $x\in (A\cap B)$, there exists $C\in \B$ such that
 		$x\in C\subset (A\cap B)$
 	\end{enumerate}
-	Therefore, there exists a unique topology $\T$ on $X$ with $\B$ being a base of it,
+	Therefore, there exists a unique topology $\T$ on $X$ with $\B$ being a base for it,
 	and such topology is the smallest (w.r.t.\footnote{with respect to} the inclusion)
 	for which the elements of $\B$ are open.
 	\label{th:1-3}
 \end{theorem}
 
 \begin{proof}
-	To proceed with the proof, we will first proof that there exist a topology, and later
-	that this is unique.
+	To proceed with the proof, we are going to first prove that there exists a topology $\T$, and later
+	we will prove that $\T$ is unique.\\
 	Let us define $\T = \{\bigcup \F\,:\,\F\subset \B\}$, and now proceed with the proof
 	that $\T$ is a topology.
 	\begin{enumerate}
-		\item Then, by using the first point $\T =\bigcup \B= X$ $\Then$ $X\in \T$. And, it
-		is trivial that $\emptyset = \bigcup \emptyset \in \T$.
+		\item By condition (1), $X=\bigcup \B$ $\Then$ $X\in \T$.
+		And, it is trivial that $\emptyset = \bigcup \emptyset \in \T$.
 
 		\item Let $\F\subset \T$, and let $\F_A=\{B\in \B\,:\, B\subset A\}$ for each
-		$A\in\F$, so that $A=\bigcup\F_A$. Let $\F^*=\bigcup\limits_{\F_A\in\F}\F_A\subset\B$.
+		$A\in\F$, so that $A=\bigcup\F_A$.
+		Let $\F^*=\bigcup\limits_{\F_A\in\F}\F_A\subset\B$.
 		Then,  $\bigcup \F =\bigcup\F^*\in\T$.
 
 		\item Let $A, B\in \T$, and $\F = \{C\in\B\,:\, C \subset(A\cap B)\}$.
@@ -184,8 +187,10 @@ family to be a base of a topology:
 		Finally, $\bigcup \F\in \T$ $\Then$ $(A\cap B) \in \T$.
 	\end{enumerate}
 	Therefore, $\T$ is a topology on $X$.
-	To demonstrate the final part of the theorem, consider $\T'$ a topology on $X$ with
-	$\B$ as base. By definition, $\T\subset \T'$. Therefore, $\T$ is unique and minimal.
+	To prove the final part of the theorem, consider $\T'$ a topology on $X$ with
+	$\B$ as base.
+	By definition, $\T\subset \T'$.
+	Therefore, $\T$ is unique and minimal.
 \end{proof}
 
 Thus, to define a topology on a set $X$ one only needs to determine a family $\B$ with
@@ -212,9 +217,9 @@ useful when defining topologies.
 
 \begin{definition}
 \label{def:subbase}
-	Let $(X, \T)$ be a topological space. A family $\S\subset \T$ is a \textbf{subbase}
-	of $(X, \T)$ \iff\ the family of all finite intersections of elements of $\S$, namely
-	$\I(\S)$, is a base of $(X, \T)$\footnote{The family of all finite intersections of
+	Let $(X, \T)$ be a topological space.
+	A family $\S\subset \T$ is a \textbf{subbase}	for $(X, \T)$ \iff\ the family of all finite intersections
+	of elements of $\S$, namely	$\I(\S)$, is a base for $(X, \T)$\footnote{The family of all finite intersections of
 	elements of $\S$ means: $\I(\S) = \bigcap\limits_{S\in\mathcal{F}} S$, for all finite subsets
 	$\mathcal{F}$ of $\S$. In particular for all subsets $\mathcal{F}$ of cardinality
 	0 (empty set, $\mathcal{F}_0=\emptyset$) or 1 (singletons, $\mathcal{F}_1=\{A\}$).}.
@@ -238,30 +243,77 @@ to satisfy any specific condition to be a subbase:
 	satisfies the conditions of \thref{th:1-3}, as follows:
 	\begin{enumerate}
 		\item $\mathcal{F}_{0}=\emptyset$ is a finite subset, and $X=\bigcap \emptyset\in\B$, therefore $X\subset
-		\bigcup\B$. Besides, all other finite subsets are $\mathcal{F}_{1}=\{A\}$ with $A\in\S
-		\subset\P X$, $\bigcap\mathcal{F}_{1}\subset X$. Therefore $\bigcup \B\subset X$. Thus $\bigcup\B = X$.
-		\item Let $A, B\in \B$, and $x\in (A\cap B)$. By definition of $\B$, $A\in\B \Rightarrow A=\bigcap S$,
-		and $B\in \B \Rightarrow B =\bigcap T$, for some finite sets $S, T\subset \S$.
-		Then, $A\cap B = (\bigcap S)\cap(\bigcap T)=\bigcap(S\cup T)\in \S$.
-		It is then clear that $\exists C\in\S$ such that $x\in C\subset (A\cap B)$.
+		\bigcup\B$.
+		Besides, all other finite subsets are $\mathcal{F}_{1}=\{A\}$ with $A\in\S
+		\subset\P X$, $\bigcap\mathcal{F}_{1}\subset X$.
+		Therefore $\bigcup \B\subset X$.
+		Thus $\bigcup\B = X$.
+		\item Let $A, B\in \B$, and $x\in (A\cap B)$.
+		By definition, $A\in\B \Rightarrow A=\bigcap S$,
+		and $B\in \B \Rightarrow B =\bigcap T$, with $S, T\subset \S$.
+		Then, $A\cap B = \left(\bigcap S\right)\cap\left(\bigcap T\right)=\bigcap (S\cup T)$.
+		It is then clear that $\exists C\in\B$ such that $x\in C\subset (A\cap B)$.
 	\end{enumerate}
 	Thus, the conditions of the \thref{th:1-3} are fulfilled which means that
-	$\B$ is base of a topology in $X$, with $\S$ as a subbase.
+	$\B$ is base for a topology in $X$, with $\S$ as a subbase.
 	Finally, to prove the uniqueness, let us consider a topology $\T'$ on $X$, 
 	such that $\forall S\in \S, S\in \T'$ $\Rightarrow$ $\forall B\in\B, B\in\T'$ 
 	$\Rightarrow$ $\T\subset \T'$, which also proves that $\B$ is the smallest.
 \end{proof}
 
-
 \begin{example}
-	Consider $\mathbb{R}^2$ endowed with the canonical Euclidean distance:
-	\[
-	d(x,y) =\sqrt{(x_1-y_1)^2+(x_2-y_2)^2},\ \forall x,y \in \mathbb{R}^2.
-	\]
-	An Euclidean open ball centred at $x$ with radius $\epsilon$ is defined as follows:
-	\[
-	B_\epsilon(x) = \{z\in\mathbb{R}^2\,|\,d(x,z)<\epsilon\},
-	\]
-	which certainly contains 
+	\footnote{This will be discussed in further detail later on the book, when
+	we endow any ordered space with a topological structure.}
+	The \textbf{order topology} on $\mathbb{R}$ is the topology generated by the
+	basis $\B=\setdef{(a,b)}{a,b\in\mathbb{R}, a<b}$. At the same time, we also have
+	the usual-metric induced topology on $\mathbb{R}$, which is the topology
+	generated by the basis $\B=\setdef{B_\epsilon(x)}{\epsilon>0, x\in\mathbb{R}} = \setdef{(x-\epsilon, x+\epsilon)}{\epsilon>0, x\in\mathbb{R}}$.
+	It turns out that both the order topology and the metric topology are the same.
+	This is a consequence of the fact that every open of the metric topology is an
+	open interval, hence it is also an open set of the order topology. And, conversely,
+	if $(a,b)$ is an open on the order topology, and $x\in\mathbb{R}$, then can simply
+	take $\epsilon=\min\{x-a, b-x\}$, and we have that $B_\epsilon(x)=(x-\epsilon, x+\epsilon)\subset (a,b)$.
+	Therefore, all the open of the order topology are open of the metric topology, and
+	vice versa.
 \end{example}
 
+\subsection{Product topology}\label{subsec:product-topology}
+
+We expect the reader to be familiarised with the concept of the Euclidean (or, simply, \emph{natural}) distance
+in $\mathbb{R}^2$, which is defined as follows:
+
+Let $x=(x_1,x_2), y=(y_1,y_2)\in\mathbb{R}^2$, then the Euclidean distance between
+$x$ and $y$ is defined as follows:
+\begin{equation}
+	d(x,y) = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2}.\label{eq:euclidean-distance}
+\end{equation}
+which represents the length of the segment joining $x$ and $y$. This distance can be
+used to define the \emph{open ball} centred at $x$ with radius $\epsilon$ as follows:
+\begin{equation}
+	B_\epsilon(x) = \{z\in\mathbb{R}^2\,|\,d(x,z)<\epsilon\}.
+	\label{eq:open-ball}
+\end{equation}
+which certainly contains $x$, and all the points \emph{around} $x$ at a distance.
+
+\begin{remark}
+	Using the standard notation $(a,b)\subset\mathbb{R}$ to refer to the
+	open interval between $a$ and $b$ would not be convenient, since we are using
+	the same notation for coordinates in $\mathbb{R}^2$.
+	Whenever this potential misunderstanding is possible, we will use the notation
+	$I_{(a,b)} = \setdef{x\in\mathbb{R}}{a<x<b}$.
+\end{remark}
+
+If our main concern is to determine when a subset of $\mathbb{R}^2$ contains the points
+\emph{around} $x\in\mathbb{R}^2$, we can either use open balls or, instead, open
+rectangles centred at $x$, given that the rectangle:
+\begin{align*}
+R_\epsilon(x) =& \{z\in\mathbb{R}^2\,|\,|x_1-z_1|<\epsilon_1, |x_2-z_2|<\epsilon_2\} \\
+=& I_{(x_1-\epsilon_1, x_1+\epsilon_1)}\times I_{(x_2-\epsilon_2, x_2+\epsilon_2)}
+\end{align*}
+contains all the points which are intuitively \emph{around} $x$.
+
+The main advantage of using open rectangles, instead of using open balls, is that
+they allow us to come up with an easy procedure to endow the product
+of two topological spaces $X \times Y$ with a topological structure.
+This procedure is based on the observation that the product of open sets
+$U \times V$ form a base for the product topology on $X\times Y$.
