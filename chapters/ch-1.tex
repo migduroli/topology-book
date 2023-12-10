@@ -254,7 +254,7 @@ to satisfy any specific condition to be a subbase:
 		Then, $A\cap B = \left(\bigcap S\right)\cap\left(\bigcap T\right)=\bigcap (S\cup T)$.
 		It is then clear that $\exists C\in\B$ such that $x\in C\subset (A\cap B)$.
 	\end{enumerate}
-	Thus, the conditions of the \thref{th:1-3} are fulfilled which means that
+	Thus, the conditions for \thref{th:1-3} are fulfilled which means that
 	$\B$ is base for a topology in $X$, with $\S$ as a subbase.
 	Finally, to prove the uniqueness, let us consider a topology $\T'$ on $X$, 
 	such that $\forall S\in \S, S\in \T'$ $\Rightarrow$ $\forall B\in\B, B\in\T'$ 
@@ -279,21 +279,36 @@ to satisfy any specific condition to be a subbase:
 
 \subsection{Product topology}\label{subsec:product-topology}
 
-We expect the reader to be familiarised with the concept of the Euclidean (or, simply, \emph{natural}) distance
-in $\mathbb{R}^2$, which is defined as follows:
+At this point, it seems natural to try and generalise the concept of topological space to
+the cartesian product of topological spaces. The idea is that we have a family of
+topological spaces $\{(X_i, \T_i)\}_{i\in I}$ (sometimes we will refer to them simply
+as $\{X_i\}_{i\in I}$), and we want to equip the cartesian product
+$X=\prod_{i\in I} X_i$ with a topological structure.
+Before we proceed with the formal introduction of any topology of the product space,
+such as the na\"{i}ve \emph{box topology}, or
+the \emph{product topology} (or,
+\emph{Tychnoff topology} due to the fact that it was introduced by Andrey Tychnoff in 1935\footnote{%
+	Tikhonov, Andrey Nikolayevich (1935). \emph{\"{U}ber einen Funktionraum}, Mathematische Annalen (111): 762--766.
+	Cited in Hocking, John G. \& Young, Gail S. (1961). Topology. Addison-Wesley.%
+}), we will briefly introduce the concept in the more familiar context of $\mathbb{R}^2$.
 
-Let $x=(x_1,x_2), y=(y_1,y_2)\in\mathbb{R}^2$, then the Euclidean distance between
-$x$ and $y$ is defined as follows:
+\subsubsection{Neighbourhoods in $\mathbb{R}^2$}\label{subsubsec:neighbourhoods-in-r2}
+We expect the reader to be familiarised with the concept of the Euclidean (or, simply, \emph{natural}) distance
+in $\mathbb{R}^2$, although this will be thoroughly discussed when we deal with metric spaces in Chapter~\ref{ch:metric-spaces}.
+
+The Euclidean distance between two points $x=(x_1,x_2)$ and $y=(y_1,y_2)$ in $\mathbb{R}^2$ is defined as follows:
 \begin{equation}
 	d(x,y) = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2}.\label{eq:euclidean-distance}
 \end{equation}
-which represents the length of the segment joining $x$ and $y$. This distance can be
-used to define the \emph{open ball} centred at $x$ with radius $\epsilon$ as follows:
+which represents the length of the segment joining $x$ and $y$.
+This distance can be used to define the \emph{open ball} centred at $x$ with radius $\epsilon$ as follows:
 \begin{equation}
 	B_\epsilon(x) = \{z\in\mathbb{R}^2\,|\,d(x,z)<\epsilon\}.
 	\label{eq:open-ball}
 \end{equation}
 which certainly contains $x$, and all the points \emph{around} $x$ at a distance.
+And, given that it contains all the points \emph{around} $x$, it is clear that $B_\epsilon(x)$ is an open set
+in $\mathbb{R}^2$.
 
 \begin{remark}
 	Using the standard notation $(a,b)\subset\mathbb{R}$ to refer to the
@@ -303,17 +318,94 @@ which certainly contains $x$, and all the points \emph{around} $x$ at a distance
 	$I_{(a,b)} = \setdef{x\in\mathbb{R}}{a<x<b}$.
 \end{remark}
 
-If our main concern is to determine when a subset of $\mathbb{R}^2$ contains the points
+However, if our main concern is to determine when the subsets of $\mathbb{R}^2$ which contain the points
 \emph{around} $x\in\mathbb{R}^2$, we can either use open balls or, instead, open
 rectangles centred at $x$, given that the rectangle:
 \begin{align*}
 R_\epsilon(x) =& \{z\in\mathbb{R}^2\,|\,|x_1-z_1|<\epsilon_1, |x_2-z_2|<\epsilon_2\} \\
 =& I_{(x_1-\epsilon_1, x_1+\epsilon_1)}\times I_{(x_2-\epsilon_2, x_2+\epsilon_2)}
 \end{align*}
-contains all the points which are intuitively \emph{around} $x$.
+also contains all the points which are intuitively \emph{around} $x$, hence it is also an
+open set in $\mathbb{R}^2$.
 
-The main advantage of using open rectangles, instead of using open balls, is that
-they allow us to come up with an easy procedure to endow the product
-of two topological spaces $X \times Y$ with a topological structure.
+These open rectangles generalise to higher dimensions in the obvious way, where the
+term \emph{open box} seems more appropriate.
+The main advantage of using open boxes,
+instead of using open balls, is that they allow us to come up with an easy procedure
+to equip the product of two topological spaces $X \times Y$ with a topological structure.
 This procedure is based on the observation that the product of open sets
-$U \times V$ form a base for the product topology on $X\times Y$.
+$U \times V$ form a base for the product topology on $X \times Y$.
+And, indeed, this observation is true for any finite product of topological spaces.
+
+Unfortunately, this seemingly simple procedure does not work for infinite products of
+topological spaces, as was noticed by Tychnoff in 1935.
+The problem was that the product of open sets in an infinite product of topological
+spaces does not satisfy certain \emph{desirable} properties which we will discuss later.
+Tychonoff found a way to overcome this problem, which gave rise to the \emph{product topology}.
+
+\subsubsection{Product topology: Tychonoff's definition}\label{subsubsec:product-topology}
+
+Before being able to introduce the definition for the product topology, we need to
+introduce the concept of cartesian \emph{projection}.
+
+\begin{definition}
+	\label{def:projection}
+	Let $\{X_i\}_{i\in I}$, with $I\subset\mathbb{N}$, be a family of sets, and
+	$X=\prod_{i\in I} X_i$ their cartesian product.
+	The \textbf{cartesian projection} (or, simply, projection) is the function defined as follows:
+	$$
+  	\begin{array}{rrcl}
+		\pi_j : & X &\longrightarrow & X_j,\\
+		 & x &\longmapsto     & \pi_j(x),
+  	\end{array}
+	$$
+	where $\pi_j(x)=x_j \in X_j$ is the $j$-th coordinate of $x$.
+	This definition can be extended to any subset $A=\prod_{i\in I}A_i\subset X$
+	by defining $\pi_j[A] = \setdef{\pi_j(x)}{x\in A}\linebreak = A_j\subset X_j$.
+	The \emph{inverse image mapping} induced by the projection $\pi_j$ is defined as follows:
+	$$
+		\begin{array}{rrcl}
+			\pi^{-1}_j : & X_j &\longrightarrow & X,\\
+			 & x_j &\longmapsto     & \pi^{-1}_j(x_j),
+		\end{array}
+	$$
+	where $\pi^{-1}_j(x_j)=\{x\in X\,:\,\pi_j(x)=x_j\} \subset X$.
+	This can also be expressed as $\pi^{-1}_j(x_j) = \{x_j\} \times \prod_{i\in I\setminus\{j\}}X_i \subset X$.
+	This definition can also be extended to any subset $A_j\subset X_j$ by defining
+	$\pi^{-1}_j[A_j]=\setdef{\pi^{-1}_j(x_j)}{x_j\in A_j}=A_j\times\prod_{i\in I\setminus\{j\}}X_i\subset X$.
+\end{definition}
+
+From the above definition, we can deduce the following lemma which will be useful later on to prove some results:
+
+\begin{lemma}
+	Let $\{X_i\}_{i\in I}$ be a family of sets, and $X=\prod_{i\in I} X_i$ their cartesian product.
+	Then, the following properties hold true:
+	\begin{enumerate}
+		\item Let $A_j\subset X_j$, then $(\pi_j\circ\pi^{-1}_j)[A_j] = \text{id}_{X_j}$.
+		\item Let $A\subset X$, then $A = \bigcap_{j\in I}(\pi_j^{-1}\circ\pi_j)[A]$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}These are very simple results, which only require the use of the definitions \defref{def:projection}:
+	\begin{enumerate}
+		\item Let us use the definition of the inverse first, we have $\pi_{j}^{-1}[A_j]=\{ x\in X\,:\,\pi_{j}(x)=x_j\in A_j\}$.
+		Then, $(\pi_{j}\circ\pi_{j}^{-1})[A_j]=\{\pi_{j}(x)\,: x\in \pi_{j}^{-1}[A_j]\}=\{x_j\in A_j\} = A_j$.
+		\item {$\boxed{\subseteq}$} Let $x\in A$, then $x\in \prod_{i\in I} A_i$. Given that $\pi_j^{-1}[A_j] = A_j\times\prod_{i\in I\setminus\{j\}}X_i$,
+		we have that $x\in \pi_j^{-1}[A_j]$ for each $j\in I$. Therefore, $x\in \bigcap_{j\in I}(\pi_j^{-1}\circ\pi_j)[A]$.\\
+		{$\boxed{\supseteq}$} Let $x \in \bigcap_{j\in I}(\pi_j^{-1}\circ\pi_j)[A]$, then $x\in \pi_j^{-1}[A_j]$ for each $j\in I$.
+		This means that $x_j \in A_j$ for each $j\in I$, hence $x\in \prod_{i\in I} A_i$.
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	\label{def:product-topology}
+	Let $\{(X_i, \T_i)\}_{i\in I}$ be a family of topological spaces, and
+	let us consider the cartesian product $X=\prod_{i\in I} X_i$.
+	The \emph{product topology} on $X$ is the topology generated by the subbase
+	defined as follows:
+	$$
+		\S = \setdef{\pi^{-1}_j(U)}{U\in\T_j, j\in I},
+	$$
+	i.e., the topology generated by the subbase $\S$, with the subbasic elements
+	being the inverse projections of open sets of $\T_j$.
+\end{definition}
+
