@@ -595,3 +595,33 @@ the definition of subspace topology, as we will see in the following lemma.
 	\end{itemize}
 \end{lemma}
 
+\begin{proof}
+	Let us proceed in order:
+	\begin{itemize}
+	\item We are going to use the definition of base for a topology in order to prove that $\B_Y$  is base for the relative topology $\T_Y$. By definition, $\forall U\in\T_Y$ is of the form $U = A\cap Y,$ with $A\in\B$. We know $\B$ is base for $\T$, hence $\exists \F\subset \B$ such that $A=\bigcup \F$, so $U=(\bigcup \F)\cap Y$. Consider $\F^*=\setdef{U\cap Y}{U\in\F}\subset\B_Y$, therefore:
+	$$
+	  U=\underbrace{\left(\bigcup \F\right)}_{\in\B}\cap Y=\bigcup_{F\in \F}F\cap Y=\bigcup \F^*
+	$$
+	Therefore, $\forall U\in\T_Y$ we can find $\F^*\subset \B_Y$ such that $U=\bigcup \F^*$, which means that $\B_Y$ is base for $\T_Y$.
+	\item Let $\B$ be the base induced by $\S$, i.e. $\B=\setdef{\bigcap S}{S\in\S}$. We can check that $\B_Y = \setdef{B\cap Y}{B\in\B}$ (which we have already proved to be a base for $\T_Y$) is the base induced by $S_Y =\setdef{S\cap Y}{S\in\S}$, i.e. $\B_{\S_Y}=\setdef{\bigcap S'}{S'\in\S_Y}$. Let us prove this:
+		\begin{align*}
+		\B_{\S_Y}=&\setdef{\bigcap S'}{S'\in\S_Y}=\setdef{\bigcap (S\cap Y)}{S\in\S}\\
+		=&\setdef{\left(\bigcap S\right)\cap Y}{S\in\S}=\setdef{B\cap Y}{B\in\B}\\
+		=&\B_Y
+		\end{align*}
+	This means that $\S_Y$ is subbase for $\T_Y$.
+	\end{itemize}
+\end{proof}
+
+In what follows, we will always consider the subsets of topological spaces as topological spaces equipped with the subspace topology, unless otherwise stated.
+This is coherent, given that if we consider $X$ to be a topological space, and we have $Z\subset Y\subset X$, then the relative topology on $Z$ with respect to $X$ is the same as the relative topology on $Z$ with respect to $Y$ when $Y$ is equipped with the relative topology with respect to $X$.
+
+Regarding the product topology, we have the following result about the coherence of the product of topological spaces with the family of subspaces of each of the factors.
+
+\begin{theorem}
+	\label{th:product-subspace-topology}
+	Let $\{(X_i, \T_i)\}_{i\in I}$ be a family of topological spaces, with $X=\prod_{i\in I} X_i$,
+	$\{Y_i\}_{i\in I}$ be a family with $Y_i\subset X_i$, $\forall i\in I$, and $Y=\prod_{i\in I}Y_i\subset X$.
+	Considering each $Y_i$ as a topological space equipped with the subspace topology
+	induced by $X_i$, then the product topology on $Y$ is the same as the subspace topology induced by $X$ on $Y$.
+\end{theorem}
