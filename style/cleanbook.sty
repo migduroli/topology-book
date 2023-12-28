@@ -14,7 +14,6 @@
 \usepackage{amsthm}
 \usepackage{mathrsfs}
 \usepackage{color,graphicx}
-%\usepackage{txfonts}
 \usepackage{memhfixc}
 \usepackage{bm}
 \usepackage{calc}
@@ -22,10 +21,12 @@
 \usepackage{colortbl}
 \usepackage{euscript}
 \usepackage{bbding}
-
 \usepackage{tikz}
-
 \usepackage[bookmarksnumbered=true]{hyperref}
+\usepackage{cleveref}
+\usepackage[most]{tcolorbox}
+\usepackage{marginnote}
+
 \hypersetup{
      colorlinks = true,
      linkcolor = blue,
@@ -68,9 +69,11 @@
 \def\Neht{\Leftarrow}
 \def\TendsTo{\rightarrow}
 \def\Abs#1{\left|#1\right|}
+\def\Rel#1#2{\left.#1\right|_{#2}}
 
 \def\P{\EuScript{P}}
 \def\T{\EuScript{T}}
+\def\Trel#1{\Rel{\T}{#1}}
 \def\F{\EuScript{F}}
 \def\B{\EuScript{B}}
 \def\S{\EuScript{S}}
@@ -115,3 +118,49 @@ $\kern-0.40cm{$\mathcal{M}$\lower0.11cm\hbox{\kern-0.05cm\hbox{i}}
 \chapterstyle{veelo}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{2}
+
+\newtcbtheorem[number within=chapter]{myTheorem}{}{
+        enhanced,
+        sharp corners,
+        attach boxed title to top left={
+            xshift=-1mm,
+            yshift=-5mm,
+            yshifttext=-1mm
+        },
+        top=1.5em,
+        colback=white,
+        colframe=blue!75!black,
+        fonttitle=\bfseries,
+        boxed title style={
+            sharp corners,
+            size=small,
+            colback=blue!75!black,
+            colframe=blue!75!black,
+        }
+    }{thm}
+
+\newtcbtheorem[number within=chapter]{myDefinition}{}{
+        enhanced,
+        sharp corners,
+        attach boxed title to top left={
+            xshift=-1mm,
+            yshift=-5mm,
+            yshifttext=-1mm
+        },
+        top=1.5em,
+        colback=white,
+        colframe=gray!75!black,
+        fonttitle=\bfseries,
+        boxed title style={
+            sharp corners,
+            size=small,
+            colback=gray!75!black,
+            colframe=gray!75!black,
+        }
+    }{def}
+
+\newenvironment{Theorem}[2]{ \begin{myTheorem}[adjusted title=#1]{}{#2}
+  \textbf{Theorem \thetcbcounter.} }{\end{myTheorem}}
+
+  \newenvironment{Definition}[2]{ \begin{myDefinition}[adjusted title=#1]{}{#2}
+  \textbf{Definition \thetcbcounter.} }{\end{myDefinition}}
