@@ -90,6 +90,9 @@
 \def\lemref#1{\textbf{Lem.}\,\ref{#1}}
 
 \def\setdef#1#2{\left\{#1\,:\,#2\right\}}
+\def\interior#1{\overset{\circ}{#1}}
+\def\Interior#1{\overbrace{#1}^{\circ}}
+\def\closure#1{\overline{#1}}
 
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
@@ -159,8 +162,33 @@ $\kern-0.40cm{$\mathcal{M}$\lower0.11cm\hbox{\kern-0.05cm\hbox{i}}
         }
     }{def}
 
+\newtcbtheorem[number within=chapter]{myExample}{}{
+        breakable,
+        enhanced,
+        sharp corners,
+        attach boxed title to top left={
+            xshift=-1mm,
+            yshift=-5mm,
+            yshifttext=-1mm
+        },
+        top=1.25em,
+        colback=white,
+        colframe=gray!75!black,
+        fonttitle=\bfseries,
+        boxed title style={
+            sharp corners,
+            size=small,
+            colback=gray!75!black,
+            colframe=gray!75!black,
+        }
+    }{exa}
+
 \newenvironment{Theorem}[2]{ \begin{myTheorem}[adjusted title=#1]{}{#2}
   \textbf{Theorem \thetcbcounter.} }{\end{myTheorem}}
 
-  \newenvironment{Definition}[2]{ \begin{myDefinition}[adjusted title=#1]{}{#2}
+\newenvironment{Definition}[2]{ \begin{myDefinition}[adjusted title=#1]{}{#2}
   \textbf{Definition \thetcbcounter.} }{\end{myDefinition}}
+
+\newenvironment{Example}[2]{ \begin{myExample}[adjusted title=#1]{}{#2}
+  \textbf{Example \thetcbcounter.} }{\end{myExample}}
+
