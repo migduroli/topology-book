@@ -26,6 +26,9 @@
 \usepackage{cleveref}
 \usepackage[most]{tcolorbox}
 \usepackage{marginnote}
+\usepackage{enumitem}
+\usepackage[makeroom]{cancel}
+\usepackage{textcomp}
 
 \hypersetup{
      colorlinks = true,
@@ -85,9 +88,9 @@
 \def\brackets#1{\left(#1\right)}
 \def\partialDiff#1#2{\frac{\partial#1}{\partial#2}}
 \def\totalDiff#1#2{\frac{d#1}{d#2}}
-\def\defref#1{\textbf{Def.}\,\ref{#1}}
-\def\thref#1{\textbf{Th.}\,\ref{#1}}
-\def\lemref#1{\textbf{Lem.}\,\ref{#1}}
+\def\defref#1{\textbf{Def.}\,\text{\ref{#1}}}
+\def\thref#1{\textbf{Th.}\,\text{\ref{#1}}}
+\def\lemref#1{\textbf{Lem.}\,\text{\ref{#1}}}
 
 \def\setdef#1#2{\left\{#1\,:\,#2\right\}}
 \def\interior#1{\overset{\circ}{#1}}
