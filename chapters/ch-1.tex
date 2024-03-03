@@ -477,8 +477,8 @@ of the underlying topological spaces.
 	We want to prove that all the elements of $\B_X$ are in the topology $\T$, hence of the product topology $\T_X$.
 	Then, if we prove that $\B_X$ is a base for $\T$, we will have proved that $\B_X$ is a base for $\T_X$.
 
-	Let us first prove that $B\in \T_X$, $\forall B\in \B_X$. Let $B=\prod_{i\in I}B_i\in\B_X$, according to \lemref{lem:projection}:
-	$B=\bigcap_{i\in I}\pi^{-1}_i[B_i] = \left(\bigcap_{i\in I_0}B_i\times \prod_{j\in I_0\setminus\{i\}}X_j\right)\cap \left(\prod_{i\in I\setminus I_0}X_i\right)=\bigcap_{i\in I_0} \pi^{-1}_i[B_i]$.
+	Let us first prove that $B\in \T_X$, $\forall B\in \B_X$. Let $B\in\B_X$, according to \lemref{lem:projection} and the definition of the elements of $\B_X$:
+	$B=\bigcap_{i\in I}\pi^{-1}_i[\pi_i[B]] = \left(\bigcap_{i\in I_0}\pi^{-1}_i[B_i]\right)\cap \left(\bigcap_{i\in I\setminus I_0}\pi^{-1}_i[X_i]\right)=\left(\bigcap_{i\in I_0}\pi^{-1}_i[B_i]\right)\cap X=\bigcap_{i\in I_0} \pi^{-1}_i[B_i]$.
 	Therefore, $B$ is an intersection of elements of $\S$, hence $B\in \T = \T_X$. Therefore, $\B_X\subset \T_X$.
 
 	To prove that $\B_X$ is a base for $\T$ (and, therefore, for $\T_X$) we are going to prove that $\B_X$ fulfills
@@ -744,7 +744,7 @@ It is straightforward to prove that a every $T_2$ space is also $T_1$, and that 
 Now that we have introduced the most commonly used separation axioms, and we have gained a bit of intuition about them with the previous examples, let us introduce a result which shows that the separation axioms are preserved when we consider subspaces of topological spaces.
 
 \begin{theorem}
-	\label{th:1-8}
+	\label{th:subspace-separation-consistency}
 	Let $(X, \T)$ be a topological space, and $Y\subset X$ a subspace of $X$ with the subspace topology $\Trel{Y}$.
 	Then, if $X$ is $T_i$ $\Then$ $Y$ is also $T_i$, $i\in\{0,1,2\}$.
 \end{theorem}
@@ -759,12 +759,12 @@ Now that we have introduced the most commonly used separation axioms, and we hav
 \end{proof}
 
 \begin{theorem}
-	\label{th:1-9}
+	\label{th:product-topology-separation-consistency}
 	Let $\{X_i\}_{i\in I}$ be a family of topological spaces, such that \textbf{$X=\prod_{i\in I}X_i\neq \emptyset$}.
 	Then, $X$\footnote{With the product topology} is a $T_j$ space $\iff$ $\forall i\in I$, $X_i$ is a $T_j$ space, for $j\in\{0,1,2\}$.
 \end{theorem}
 \begin{proof}
-	As we did with the previous result in \thref{th:1-8}, we are going to prove the case $T_2$ only, since the other cases can be proved in a similar way.
+	As we did with the previous result in \thref{th:subspace-separation-consistency}, we are going to prove the case $T_2$ only, since the other cases can be proved in a similar way.
 	Given that we have to prove an $\iff$ statement, we are going to prove both implications:
 	\begin{itemize}
 	\item[$\boxed{\Rightarrow}$] Let $X$ be a $T_2$ space, and let $u_j, v_j \in X_j$ two distinct points, such that they are the $j$-th coordinate of the points $u,v\in X$, respectively, i.e. $\pi_j(u)=u_j$ and $\pi_j(v)=v_j$. Since $X$ is $T_2$, $\exists U, V\in \T_X$ such that $(u\in U)\land (v\in V)\land (U\cap V=\emptyset)$. Therefore,
@@ -774,7 +774,7 @@ Now that we have introduced the most commonly used separation axioms, and we hav
 	with $U_i, V_i$ satisfying the conditions of \thref{th:product-topology-base}.
 	This means that $(U_i\cap V_i)=\emptyset$, $\forall i\in I$. In particular, $(U_j\cap V_j)=\emptyset$.
 	Thus, $\forall u_j, v_j\in X_j$, $\exists U_j, V_j \in \T_{X_j}$ such that $(u_j\in U_j)\land (v_j\in V_j)\land (U_j\cap V_j=\emptyset)$, i.e. $X_j$ is $T_2$.
-	\item[$\boxed{\Leftarrow}$] Let $X_i$ be a $T_2$ space $\forall i\in I$. Consider $u,v\in X$ two distinct points, $\exists j\in I$ so that $X_j\ni \pi_j(u) = u_j = \neq v_j=\pi_j(v)\in X_j$. Then, $\exists U,V \in X_j$ such that $(u_j\in U)\land (v_j\in V)\land (U_j\cap V_j)=\emptyset$.
+	\item[$\boxed{\Leftarrow}$] Let $X_i$ be a $T_2$ space $\forall i\in I$. Consider $u,v\in X$ two distinct points, $\exists j\in I$ so that $X_j\ni \pi_j(u) = u_j \neq v_j=\pi_j(v)\in X_j$. Then, $\exists U,V \in X_j$ such that $(u_j\in U)\land (v_j\in V)\land (U_j\cap V_j)=\emptyset$.
 	Using the definition of cartesian projection \defref{def:projection}:
 	\begin{align*}
 		u_j\in U &\Then u_j\in\pi_j[U]=\setdef{x\in X}{x_j\in U}\\
@@ -833,6 +833,7 @@ A straightforward result of this definition is that closed sets in a topological
 The following result relates closed sets in a topological space $X$, and closed sets in the subspace topology for $Y\subset X$:
 
 \begin{lemma}
+	\label{lem:closed-sets-subspace-topology}
 	Let $(X, \T)$ be a topological space, and $Y\subset X$. The closed sets of $\Trel{Y}$ are the sets of the form $Y\cap C$, with $C$ closed in $X$.
 \end{lemma}
 \begin{proof}
@@ -1014,7 +1015,7 @@ In other words, $x$ is an interior point of $A$ \iff\ $x$ is surrounded by point
 Having established the notions of interior and closure, and how they relate to each other, we can now proceed and generalise such concepts to product spaces, i.e. cartesian products of topological spaces with the Tychonoff product topology.
 
 \begin{theorem}
-	\label{th:interior-closure-product-space}
+	\label{th:closure-product-space}
 	Let $\{X_i\}_{i\in I}$ be a family of topological spaces, and $\{Y_i\}_{i\in I}$ a family such that $Y_i\subset X_i$, $\forall i\in I$. Then, we can state the following:
 	\[\closure{\prod_{i\in I}Y_i}=\prod_{i\in I}\closure{Y_i}\]
 	In particular, the product of closed sets is also closed.
@@ -1208,10 +1209,94 @@ Let us proceed with the proof of both implications:
 \end{proof}
 
 In the following we are going to show that the regularity property is preserved when taking subspaces, and that the product of regular spaces is also regular.
-However, before we proceed with the proof of these results, we need to prove a result which will be convenient for later proofs:
+
+\begin{theorem}
+	\label{th:regular-subspace}
+	Every subspace $Y\subset X$ (i.e, $Y$ equipped with the subspace topology) of a regular space $X$ is also regular.
+\end{theorem}
+
+\begin{proof}
+	First, we need to prove that $Y$ is $T_1$, which is the first requirement of the regularity axiom (see~\defref{def:regular-space}).
+	This is straightforward to prove, because $Y\subset X$ and $X$ is $T_1$ by definition. Thus, we have that $Y$ is $T_1$ according to~\thref{th:subspace-separation-consistency}.
+
+	Let $A\subset Y$ be a closed subset in $Y$, and let $x\notin A$, i.e. $x\in A^\complement$. Since $A$ is closed in $Y$, $\exists F\subset X$ such that $A=Y\cap F$, with $F$ closed in $X$ (see~\lemref{lem:closed-sets-subspace-topology}). Since $x\notin A$, it is clear that $x\notin F$ $\Then$ $x\in X\setminus$. Then, we have $x\in F^\complement$ and $F$ closed set in $X$, and we know that $X$ is regular $\Then$ $\exists V, W\in \T$ ($V\cap W =\emptyset$) with $x\in V$, and $F\subseteq W$. Thus, the following holds:
+	\[
+		x\in\underbrace{(Y\cap V)}_{\in \Trel{Y}}\land \underbrace{(Y\cap F)}_{\text{closed in }Y}\subseteq \underbrace{(Y\cap W)}_{\in \Trel{Y}}
+	\]
+	This means that for every $A$ closed in $Y$, and every $x\in (Y\setminus A)$, $\exists P,Q\in\Trel{Y}$ such that $x\in P$ and $A\subset Q$, with $P\cap Q=\emptyset$. Therefore, $Y$ is regular.
+\end{proof}
+
+\begin{theorem}
+	\label{th:regular-product-space}
+	Let $\{X_i\}_{i\in I}$ be a family of non-empty spaces.
+	Then, the cartesian product $X=\prod_{i\in I}X_i$ equipped with the product topology is regular \iff\ every $X_i$ is regular.
+\end{theorem}
+
+\begin{proof}
+	Let us proceed with the proof of both implications:
+	\begin{itemize}
+		\item[$\boxed{\Rightarrow}$] Let $X=\prod_{i\in I}$ be a regular space, and let us focus our attention on a particular factor space $X_j$. Let $x\in X_j$ and $F\subset X_j$ closed in $X_j$, such that $x\in (X_j\setminus F)$. Given that $X$ is regular, we know that for every $x\in X$ and every closed set $C\subset X$ such that $x\in (X\setminus C)$, $\exists U,V\in\T$, with $U=\prod_{i\in I}U_i$ and $V=\prod_{i\in I}V_i$, such that $x\in U$ and $C\subset V$ with $U\cap V=\emptyset$. We can take $x$ such that $\pi_j(x)=x_j$, and $C$ so that $\pi_j[C]=F$. Then, we have:
+		\[
+			\pi_j[x]\in \pi_j[U]\ \land\ \pi_j[C]\subset \pi_j[V]\ \land\ \pi_j[U]\cap \pi_j[V]=\emptyset
+		\]
+		Therefore, $\exists U_j,V_j\in\T_j$ such that $x_j\in U_j$ and $F\subset V_j$ with $U_j\cap V_j=\emptyset$. This proves that $X_j$ is regular.
+		\item[$\boxed{\Leftarrow}$] By hypothesis, $X_i$ is regular $\forall i\in I$ $\Then$ $X_i$ is $T_1$, $\forall i\in I$ $\overset{\text{\thref{th:subspace-separation-consistency}}}{\Then}$ This proves that $\prod_{i\in I}X_i$ is also $T_1$.\\
+		Now, we need to prove that the product space is also regular, and for this we will use the result~\thref{th:regular-space-characterisation-1} with the subbase formed by the subsets $\pi_i^{-1}[V_i]$, where $V_i\in\T_i$. Let $x\in\pi_i^{-1}[V_i]\in\T_X$, so that $x_i\in V_i$. Since every $X_i$ is regular, $\exists U_i\in \T_i$ such that $x_i\in U_i\subset\closure{U_i}\subset V_i$ $\Then$ $x\in \pi_i^{-1}[U_i]\subset \closure{\pi_i^{-1}[U_i]}=\pi_i^{-1}[\closure{U_i}]\subset \pi_i^{-1}[V_i]$, where we have used ~\defref{def:projection} and~\thref{th:closure-product-space} for the identity $\closure{\pi_i^{-1}[U_i]}=\pi_i^{-1}[\closure{U_i}]$. Thus, $\forall x\in X$ and every $V=\pi^{-1}_i[V_i]\subset X$ subbase neighbourhood of $x$, $\exists U\subset X$, also neighbourhood of $x$ such that $x\in U\subset\closure{U}\subset V$ $\Then$ $X$ is regular.
+	\end{itemize}
+\end{proof}
+
+\subsubsection{Boundary points}\label{subsubsec:boundary-points}
+
+There are several equivalent definitions of the boundary of a subset $S\subset X$ of a topological space $(X,\T)$, which we will refer to as $\partial_{X}S$ or $\mathrm{Bd}_{X}S$, or simply $\partial S$ when the space can be inferred from the context. We can proceed with the introduction of the first definition, to later introduce its equivalent formulations.
+
+\begin{definition}
+	\label{def:boundary-set}
+	Let $(X, \T)$ be a topological space, and $A\subset X$ a subset. We define the \textbf{boundary} of $A$ as follows:
+	\[
+		\partial A = \closure{A}\cap\closure{(X\setminus A)}
+	\]
+\end{definition}
+
+The boundary of a set $A$ is constituted by points which are in the closure of $A$, but also in the closure of the complement of $A$.
+In other words, the points of the boundary of $A$ have as neighbours points both in $A$ and in $X\setminus A$, therefore they are in the ``boundary'' between $A$ and its complement.
+By straightforward application of~\thref{th:interior-closure-complement-relations}, we can go from this to the other equivalent definitions:
+\[
+	\partial A = \closure{A}\cap\closure{(X\setminus A)}=\closure{A}\cap(X\setminus\interior{A})=\closure{A}\setminus\interior{A}
+\]
+
+Thus, the boundary of a set comprises the points which demarcate the difference between the interior and the closure of the set (which is exactly what the last definition states).
 
 \begin{lemma}
-	\label{lem:subspace-closed-sets}
-	Let $(X, \T)$ be a topological space, and consider $Y\subset X$ with the subspace topology. Then, a subset $F\subset Y$ is closed in $Y$ \iff\ $F=C\cap Y$ for some closed set $C\subset X$.
+	Let $(X,\T)$ be a topological space, and $A\subset X$. Then, $A$ is open in $X$ \iff\ $\forall x\in \partial A$, $x\notin A$. Or, equivalently, $A$ is closed in $X$ \iff\ $\forall x\in \partial A$, $x\in A$.
 \end{lemma}
 
+\begin{proof}
+	Let us prove both implications:
+	\begin{itemize}
+		\item[$\boxed{\Rightarrow}$] Since $A$ is open in $X$, then $A=\interior{A}$. By definition, $\partial A =\{x\in X\,:\,(x\in \closure{A})\land (x\notin \interior{A})\}$ $\Then$ $\forall x\in \partial A$, $x\notin A$.
+		\item[$\boxed{\Leftarrow}$] Let $x\in \partial A$, and $x\notin A$ $\Then$ $x\in \closure{A}\setminus{\interior{A}}$ and $x\notin A$. If $A$ is not open, then $A\subset \closure{A}$. By hypothesis, $x\notin A\subset \closure{A}$ $\Then$ $x\notin \closure{A}$, which is a contradiction with $x\in \closure{A}\setminus{\interior{A}}$. Therefore, $A$ is open.
+	\end{itemize}
+\end{proof}
+
+The previous result leads us to the conclusion that the open subsets in $X$ are those which do not contain any of their boundary points, and the closed subsets are those which contain all their boundary points. The following result shows us that the boundary of a set cannot be ``too big''.
+
+\begin{theorem}
+	\label{th:interior-boundary-empty}
+	Let $A$ be an open subset in the topological space $(X, \T)$, then $\partial A$ is a closed subset  with empty interior, i.e. $\interior{\partial A}=\emptyset$.
+\end{theorem}
+
+\begin{proof}
+	The proof is straightforward by using the previous definitions, and using twice~\thref{th:interior-closure-complement-relations}:
+	\[
+		\Interior{\partial A}=\Interior{\closure{A}\cap(X\setminus \interior{A})}=\interior{\closure{A}}\cap\Interior{(X\setminus \interior{A})}=\interior{\closure{A}}\cap\Interior{(X\setminus A)}=\interior{\closure{A}}\cap(X\setminus \closure{A})=\emptyset
+	\]
+\end{proof}
+
+\subsubsection{Accumulation points}\label{subsubsec:accumulation-points}
+
+The relation $A\subset \closure{A}$ can be intuitively interpreted as asserting that for every point in $A$ there is another point in $A$ arbitrarily close to it, e.g. $x$ itself. However, it is useful to know whether a point $x\in A$ has surrounding points in $A$ which are not $x$ itself. This is the idea behind the concept of \emph{accumulation point}, which we are going to introduce in this section.
+
+\begin{definition}
+	\label{def:accumulation-point}
+	Let $A$ be a subset of a topological space $(X,\T)$, and consider $x\in X$. We say that $x$ is an \textbf{accumulation} (or \textbf{limit}) point of $A$ if every neighbourhood of $x$ contains at least one point of $A$ different from $x$ itself.
+\end{definition}
