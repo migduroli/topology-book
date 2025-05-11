@@ -173,7 +173,7 @@ family to be a base for a topology:
 
 		\item Let $\F\subset \T$, and let $\F_A=\{B\in \B\,:\, B\subset A\}$ for each
 		$A\in\F$, so that $A=\bigcup\F_A$.
-		Let $\F^*=\bigcup_{\F_A\in\F}\F_A\subset\B$.
+		Let $\F^*=\bigcup_{A\in\F}\F_A\subset\B$.
 		Then,  $\bigcup \F =\bigcup\F^*\in\T$.
 
 		\item Let $A, B\in \T$, and $\F = \{C\in\B\,:\, C \subset(A\cap B)\}$.
@@ -223,12 +223,13 @@ a neighbourhoods base for $x$.
 	always refer to both as \emph{neighbourhoods base}.
 \end{remark}
 
-In this context, it is useful to introduce the concept of \emph{filter}
+In this context, it is useful to introduce the concept of \emph{filter},
 which has as special case the concept of \emph{neighbourhoods base}:
 
 \begin{definition}
 	\label{def:filter}
-	Let $(X, \T)$ be a topological space, and $\B$ a family of subsets of $X$ such that:
+	Let $(X, \T)$ be a topological space, and $\B$ a family of subsets of $X$. $\B$
+	is a \textbf{filter} for $X$ \iff\ the following properties are fulfilled:
 	\begin{itemize}
 		\item $X\in\B$ and $\emptyset\notin\B$
 		\item If $A, B\in\B$, then $A\cap B\in\B$
@@ -250,9 +251,7 @@ useful when defining topologies.
 	Let $(X, \T)$ be a topological space.
 	A family $\S\subset \T$ is a \textbf{subbase}	for $(X, \T)$ \iff\ the family of all finite intersections
 	of elements of $\S$, namely	$\I(\S)$, is a base for $(X, \T)$\footnote{The family of all finite intersections of
-	elements of $\S$ means: $\I(\S) = \bigcap_{S\in\mathcal{F}} S$, for all finite subsets
-	$\mathcal{F}$ of $\S$. In particular for all subsets $\mathcal{F}$ of cardinality
-	0 (empty set, $\mathcal{F}_0=\emptyset$) or 1 (singletons, $\mathcal{F}_1=\{A\}$).}.
+	elements of $\S$ means: $\I(\S) = \bigcap_{S\in\mathcal{F}} S$, for all finite subsets $\mathcal{F}$ of $\S$. In particular for all subsets $\mathcal{F}$ of cardinality 0 (empty set, $\mathcal{F}_0=\emptyset$) or 1 (singletons, $\mathcal{F}_1=\{A\}$).}.
 \end{definition}
 
 The difference between subbases and bases is that the family of subsets does not have
@@ -348,30 +347,16 @@ in $\mathbb{R}^2$.
 	$I_{(a,b)} = \setdef{x\in\mathbb{R}}{a<x<b}$.
 \end{remark}
 
-However, if our main concern is to determine when the subsets of $\mathbb{R}^2$ which contain the points
-\emph{around} $x\in\mathbb{R}^2$, we can either use open balls or, instead, open
-rectangles centred at $x$, given that the rectangle:
+However, if our main concern is to determine subsets of $\mathbb{R}^2$ which contain all the points
+\emph{around} $x\in\mathbb{R}^2$, we can either use open balls or, instead, open rectangles centred at $x$:
 \begin{align*}
 R_\epsilon(x) =& \{z\in\mathbb{R}^2\,|\,|x_1-z_1|<\epsilon_1, |x_2-z_2|<\epsilon_2\} \\
 =& I_{(x_1-\epsilon_1, x_1+\epsilon_1)}\times I_{(x_2-\epsilon_2, x_2+\epsilon_2)}
 \end{align*}
-also contains all the points which are intuitively \emph{around} $x$, hence it is also an
+given that $R_\epsilon(x)$ also contains all the points which are intuitively \emph{around} $x$, hence it is also an
 open set in $\mathbb{R}^2$.
 
-These open rectangles generalise to higher dimensions in the obvious way, where the
-term \emph{open box} seems more appropriate.
-The main advantage of using open boxes,
-instead of using open balls, is that they allow us to come up with an easy procedure
-to equip the product of two topological spaces $X \times Y$ with a topological structure.
-This procedure is based on the observation that the product of open sets
-$U \times V$ form a base for the product topology on $X \times Y$.
-And, indeed, this observation is true for any finite product of topological spaces.
-
-Unfortunately, this seemingly simple procedure does not work for infinite products of
-topological spaces, as was noticed by Tychnoff in 1935.
-The problem was that the product of open sets in an infinite product of topological
-spaces does not satisfy certain \emph{desirable} properties which we will discuss later.
-Tychonoff found a way to overcome this problem, which gave rise to the \emph{product topology}.
+These open rectangles generalise to higher dimensions in the obvious way, where the term \emph{open box} seems more appropriate. The main advantage of using open boxes, instead of using open balls, is that they allow us to come up with an easy procedure to equip the product of two topological spaces $X \times Y$ with a topological structure. This procedure is based on the observation that the product of open sets $U \times V$ form a base for the product topology on $X \times Y$. And, indeed, this observation is true for any finite product of topological spaces. Unfortunately, this seemingly simple procedure does not work for infinite products of topological spaces, as was noticed by Tychnoff in 1935. The problem was that the product of open sets in an infinite product of topological spaces does not satisfy certain \emph{desirable} properties which we will discuss later. Tychonoff found a way to overcome this problem, which gave rise to the concept of \emph{product topology}.
 
 \subsubsection{Product topology: Tychonoff's definition}\label{subsubsec:product-topology}
 
@@ -385,8 +370,8 @@ introduce the concept of cartesian \emph{projection}.
 	The \textbf{cartesian projection} (or, simply, projection) is the function defined as follows:
 	$$
   	\begin{array}{rrcl}
-		\pi_j : & X &\longrightarrow & X_j,\\
-		 & x &\longmapsto     & \pi_j(x),
+		\pi_j : & X &\longrightarrow & X_j\\
+		 & x &\longmapsto     & \pi_j(x)
   	\end{array}
 	$$
 	where $\pi_j(x)=x_j \in X_j$ is the $j$-th coordinate of $x$.
@@ -395,8 +380,8 @@ introduce the concept of cartesian \emph{projection}.
 	The \emph{inverse image mapping} induced by the projection $\pi_j$ is defined as follows:
 	$$
 		\begin{array}{rrcl}
-			\pi^{-1}_j : & X_j &\longrightarrow & X,\\
-			 & x_j &\longmapsto     & \pi^{-1}_j(x_j),
+			\pi^{-1}_j : & X_j &\longrightarrow & X\\
+			 & x_j &\longmapsto     & \pi^{-1}_j(x_j)
 		\end{array}
 	$$
 	where $\pi^{-1}_j(x_j)=\{x\in X\,:\,\pi_j(x)=x_j\} \subset X$.
@@ -461,7 +446,7 @@ of the underlying topological spaces.
 	We can prove that $\T=\T_X$ by using double inclusion.
 	\begin{itemize}
 		\item[$\boxed{\subseteq}$] By definition, every $S\in \S$ is open in $\T_X$, thus $\B\in \T_X$ $\Then$ $\T\subseteq \T_X$.
-		\item[$\boxed{\subseteq}$] Let $\S_X$ be a subbase of $\T_X$. According to \defref{def:product-topology}:
+		\item[$\boxed{\supseteq}$] Let $\S_X$ be a subbase of $\T_X$. According to \defref{def:product-topology}:
 		$$
 			\S_X = \setdef{\pi^{-1}_j[A]}{A\in\T_j, j\in I}.
 		$$
@@ -487,7 +472,7 @@ of the underlying topological spaces.
 		\item Let us prove that $\bigcup\B_X = X$:
 		\begin{itemize}
 			\item[$\boxed{\subseteq}$] Let $x\in \bigcup\B_X$ $\Then$ $x\in \left(\prod_{i\in I_0} B_i\right)\times\left(\prod_{i\in I\setminus I_0}X_i\right)\subset\prod_{i\in I} X_i = X$ $\Then$ $x\in X$ $\Then$ $\bigcup \B_X\subset X$.
-			\item[$\boxed{\supseteq}$] Let $C\in \prod_{i\in I}X_i$ $\Then$ $C=\prod_{i\in I}C_i$ with $C_i\subset X_i$.
+			\item[$\boxed{\supseteq}$] Let $C\subset \prod_{i\in I}X_i$ $\Then$ $C=\prod_{i\in I}C_i$ with $C_i\subset X_i$.
 			Since $\B_i$ is base for $X_i$, $C_i=\bigcup_{B_i\in \B_i} B_i$, $\forall i\in I$.
 			Hence, $C=\prod_{i\in I}\left(\bigcup_{B_i\in \B_i} B_i\right) = \bigcup \left(\prod_{i\in I} B_i\right) \subset \bigcup \B_X$ $\Then$ $X\subset \bigcup \B_X$.
 		\end{itemize}
@@ -586,7 +571,7 @@ and it is also referred to as the \emph{relative topology} or \emph{induced topo
 	$\Trel{Y} = \setdef{U\cap Y}{U\in\T}$ is a topology on $Y$.
 \end{theorem}
 \begin{proof}
-Let us confirm that $\T_{Y}$ fulfils the conditions of \defref{def:topology}:
+Let us confirm that $\Trel{Y}$ fulfils the conditions of \defref{def:topology}:
 	\begin{enumerate}
 		\item $\emptyset\in\Trel{Y}$, since $\emptyset\in\T$, and $\emptyset\in(\emptyset\cap Y)\in \Trel{Y}$. Besides,
 		$Y\in \Trel{Y}$, since $X\in\T$ and $Y=(X\cap Y)\in \Trel{Y}$. Therefore, $\emptyset, Y\in \Trel{Y}$.
@@ -595,7 +580,7 @@ Let us confirm that $\T_{Y}$ fulfils the conditions of \defref{def:topology}:
 		$A=\bigcup_{F\in\F^*}F=\bigcup \F^*$, which by definition is an open set in $\T$.
 		We can check that:
 		$$
-		A\cap Y = \left(\bigcup\F^*\right)\cap Y=\bigcup_{F\in \F^*}\underbrace{(F\cap Y)}_{\in\T}=\bigcup \F.
+		A\cap Y = \left(\bigcup\F^*\right)\cap Y=\bigcup_{F\in \F^*}\underbrace{(F\cap Y)}_{\in\F}=\bigcup \F.
 		$$
 		Therefore, $\bigcup \F = (A\cap Y)$, and we know that $A=\bigcup \F^* \in \T$ $\Then$ $\bigcup \F\in \Trel{Y}$.
 		\item Let $U, V\in \Trel{Y}$ $\Then$ $\exists A, B\in \T$ such that $U=(A\cap Y)$ and $V=(B\cap Y)$. Then,
@@ -628,14 +613,14 @@ the definition of subspace topology, as we will see in the following lemma.
 \begin{proof}
 	Let us proceed in order:
 	\begin{itemize}
-	\item We are going to use the definition of base for a topology in order to prove that $\Rel{\B}{Y}$  is base for the relative topology $\Trel{Y}$. By definition, $\forall U\in\Trel{Y}$ is of the form $U = A\cap Y,$ with $A\in\B$. We know $\B$ is base for $\T$, hence $\exists \F\subset \B$ such that $A=\bigcup \F$, so $U=(\bigcup \F)\cap Y$. Consider $\F^*=\setdef{U\cap Y}{U\in\F}\subset\Rel{\B}{Y}$, therefore:
+	\item We are going to use the definition of base for a topology in order to prove that $\Rel{\B}{Y}$  is base for the relative topology $\Trel{Y}$. By definition, $\forall U\in\Trel{Y}$ is of the form $U = A\cap Y,$ with $A\in\T$. We know $\B$ is base for $\T$, hence $\exists \F\subset \B$ such that $A=\bigcup \F$, so $U=(\bigcup \F)\cap Y$. Consider $\F^*=\setdef{U\cap Y}{U\in\F}\subset\Rel{\B}{Y}$, therefore:
 	$$
 	  U=\underbrace{\left(\bigcup \F\right)}_{\in\B}\cap Y=\bigcup_{F\in \F}F\cap Y=\bigcup \F^*
 	$$
 	Therefore, $\forall U\in\Trel{Y}$ we can find $\F^*\subset \Rel{\B}{Y}$ such that $U=\bigcup \F^*$, which means that $\Rel{\B}{Y}$ is base for $\Trel{Y}$.
-	\item Let $\B$ be the base induced by $\S$, i.e. $\B=\setdef{\bigcap S}{S\in\S}$. We can check that $\Rel{\B}{Y} = \setdef{B\cap Y}{B\in\B}$ (which we have already proved to be a base for $\Trel{Y}$) is the base induced by $\Rel{\S}{Y} =\setdef{S\cap Y}{S\in\S}$, i.e. $\B_{\S_Y}=\setdef{\bigcap S'}{S'\in\S_Y}$. Let us prove this:
+	\item Let $\B$ be the base induced by $\S$, i.e. $\B=\setdef{\bigcap S}{S\in\S}$. We can check that $\Rel{\B}{Y} = \setdef{B\cap Y}{B\in\B}$ (which we have already proved to be a base for $\Trel{Y}$) is the base induced by $\Rel{\S}{Y} =\setdef{S\cap Y}{S\in\S}$, i.e. $\B_{\S_Y}=\setdef{\bigcap S'}{S'\in\Rel{\S}{Y}}$. Let us prove this:
 		\begin{align*}
-		\B_{\S_Y}=&\setdef{\bigcap S'}{S'\in\S_Y}=\setdef{\bigcap (S\cap Y)}{S\in\S}\\
+		\B_{\S_Y}=&\setdef{\bigcap S'}{S'\in\Rel{S}{Y}}=\setdef{\bigcap (S\cap Y)}{S\in\S}\\
 		=&\setdef{\left(\bigcap S\right)\cap Y}{S\in\S}=\setdef{B\cap Y}{B\in\B}\\
 		=&\Rel{\B}{Y}
 		\end{align*}
@@ -679,19 +664,19 @@ Regarding the product topology, we have the following result about the coherence
 
 	\noindent{\boxed{\supseteq}} Let us consider $F\in \Rel{\B}{Y}$, then:
 	\begin{align*}
-		F=&\prod_{i\in I}B_i\cap \prod_{i\in I}Y_i = \left(\prod_{i\in I_0} B_i\times \prod_{i\in I\setminus I_0} X_i\right)\cap \prod_{i\in I}Y_i\\
+		F=&\prod_{i\in I}B'_i\cap \prod_{i\in I}Y_i = \left(\prod_{i\in I_0} B_i\times \prod_{i\in I\setminus I_0} X_i\right)\cap \prod_{i\in I}Y_i\\
 		=&\left(\prod_{i\in I_0} B_i\times \prod_{i\in I\setminus I_0} X_i\right)\cap \left(\prod_{i\in I_0} Y_i\times \prod_{i\in I\setminus I_0} Y_i\right)\\
 		=&\prod_{i\in I_0} (B_i\cap Y_i) \times \prod_{i\in I\setminus I_0} (X_i\cap Y_i) = \prod_{i\in I_0} D_i \times \prod_{i\in I\setminus I_0} Y_i
 	\end{align*}
-	with $D_i\in \B_{Y_i}$, $I_0\subset I$. Thus, we have proved that $F\in \B_Y$ $\Then$ $F\in \Rel{\B}{Y}$, i.e. $\Trel{Y}\subset \T_Y$.
+	with $D_i\in \B_{Y_i}$, $I_0\subset I$. Thus, we have proved that $F\in\Rel{\B}{Y}$ $\Then$ $F\in \B_Y$, i.e. $\Trel{Y}\subset \T_Y$.
 
 	This means that $\T_Y=\Trel{Y}$, i.e. the product topology on $Y$ is the same as the subspace topology induced by $X$ on $Y$.
 \end{proof}
 
 \subsection{Hausdorff spaces}\label{subsec:hausdorff-spaces}
 
-In his original definition of topological space\footnote{Hausdorff, Felix (1914). \emph{Grundz\"{u}ge der Mengenlehre}, Leipzig: Veit, ISBN 978-0-8284-0061-9. Reprinted by Chelsea Publishing Company in 1944, 1949 and 1965}, Hausdorff introduced the concept in terms of neighbourhoods, requiring a certain property which seemed natural in his time but which is not present in the modern definition.
-This is because there exist some topologies which do not satisfy this property, as was discovered later on.
+In his original definition of topological space\footnote{Hausdorff, Felix (1914). \emph{Grundz\"{u}ge der Mengenlehre}, Leipzig: Veit, ISBN 978-0-8284-0061-9. Reprinted by Chelsea Publishing Company in 1944, 1949 and 1965}, Hausdorff introduced the concept in terms of neighbourhoods, requiring a certain property which seemed natural at that time and that is not present in the modern definition.
+This is because there exist topologies which do not satisfy this property, as was discovered much later.
 Nevertheless, such a property is useful to distinguish between topological spaces which do satisfy it and those which do not.
 A generalisation of such a restriction gave rise to the concept of the \emph{separation axioms}, which are a set of properties that a topological space can have or not.
 These axioms are sometimes called \emph{Tychnoff separation axioms}, and denoted with the letter $T$ after the German Trennungsaxiom (``separation axiom''), and a numerical subscript (e.g. $T_0$, $T_1$, $T_2$, etc.) to indicate a stronger and stronger separation property.
@@ -738,7 +723,7 @@ It is straightforward to prove that a every $T_2$ space is also $T_1$, and that 
 \end{example}
 
 \begin{example}
-	A simple example of a topological space which is $T_0$ but not $T_1$ is the one defined on $X=\{0,1\}$ with the topology $\T=\{\emptyset, \{0\}, \{1\},\{0,1\}\}$, also called \emph{Sierepi\'{n}ski space}. We can see how the two points are topologically distinguishable, but there is no open set containing $\{0\}$ but not $\{1\}$, or \emph{vice versa}. Thus, the space is $T_0$ but not $T_1$.
+	A simple example of a topological space which is $T_0$ but not $T_1$ is the one defined on $X=\{0,1\}$ with the topology $\T=\{\emptyset,\{1\},\{0,1\}\}$, also called \emph{Sierpi\'{n}ski space}. We can see how the two points are topologically distinguishable, but there is no open set containing $\{0\}$ but not $\{1\}$, or \emph{vice versa}. Thus, the space is $T_0$ but not $T_1$.
 \end{example}
 
 Now that we have introduced the most commonly used separation axioms, and we have gained a bit of intuition about them with the previous examples, let us introduce a result which shows that the separation axioms are preserved when we consider subspaces of topological spaces.
@@ -774,15 +759,15 @@ Now that we have introduced the most commonly used separation axioms, and we hav
 	with $U_i, V_i$ satisfying the conditions of \thref{th:product-topology-base}.
 	This means that $(U_i\cap V_i)=\emptyset$, $\forall i\in I$. In particular, $(U_j\cap V_j)=\emptyset$.
 	Thus, $\forall u_j, v_j\in X_j$, $\exists U_j, V_j \in \T_{X_j}$ such that $(u_j\in U_j)\land (v_j\in V_j)\land (U_j\cap V_j=\emptyset)$, i.e. $X_j$ is $T_2$.
-	\item[$\boxed{\Leftarrow}$] Let $X_i$ be a $T_2$ space $\forall i\in I$. Consider $u,v\in X$ two distinct points, $\exists j\in I$ so that $X_j\ni \pi_j(u) = u_j \neq v_j=\pi_j(v)\in X_j$. Then, $\exists U,V \in X_j$ such that $(u_j\in U)\land (v_j\in V)\land (U_j\cap V_j)=\emptyset$.
+	\item[$\boxed{\Leftarrow}$] Let $X_i$ be a $T_2$ space $\forall i\in I$. Consider $u,v\in X$ two distinct points, $\exists j\in I$ so that $X_j\ni \pi_j(u) = u_j \neq v_j=\pi_j(v)\in X_j$. Then, $\exists U,V \in \T_j$ such that $(u_j\in U)\land (v_j\in V)\land (U_j\cap V_j)=\emptyset$.
 	Using the definition of cartesian projection \defref{def:projection}:
 	\begin{align*}
-		u_j\in U &\Then u_j\in\pi_j[U]=\setdef{x\in X}{x_j\in U}\\
-		v_j\in V &\Then v_j\in\pi_j[V]=\setdef{x\in X}{x_j\in V}
+		u_j\in U &\Then u_j\in\pi^{-1}_j[U]=\setdef{x\in X}{x_j\in U}\\
+		v_j\in V &\Then v_j\in\pi^{-1}_j[V]=\setdef{x\in X}{x_j\in V}
 	\end{align*}
 	Therefore, $\nexists x\in X$ such that $x\in \pi^{-1}_j[U]$ and $x\in \pi^{-1}_j[V]$,
 	because that would require $x_j\in U$ and $x_j\in V$, but $U\cap V=\emptyset$.
-	If we call $U'=\pi^{-1}_j[U]$ and $V'=\pi^{-1}_j[V]$, it is clear that $U', V'\in \T_X$ according to the definition of product topology \defref{def:product-topology}, hence $\exists U', V' \in \T_x$: $(u\in U')\land (v\in V')\land (U'\cap V'=\emptyset)$, i.e. $X$ is $T_2$.
+	If we call $U'=\pi^{-1}_j[U]$ and $V'=\pi^{-1}_j[V]$, it is clear that $U', V'\in \T_X$ according to the definition of product topology \defref{def:product-topology}, hence $\exists U', V' \in \T_X$: $(u\in U')\land (v\in V')\land (U'\cap V'=\emptyset)$, i.e. $X$ is $T_2$.
 	\end{itemize}
 	This proves that $X$ is $T_2$ $\iff$ $X_i$ is $T_2$, $\forall i\in I$. The same reasoning can be applied to prove the result for $j=0,1$.
 \end{proof}
@@ -824,7 +809,7 @@ A straightforward result of this definition is that closed sets in a topological
 	\begin{enumerate}
 		\item $X$ is closed given that $X^\complement=\emptyset\in \T$. The same applies to $\emptyset$, because $\emptyset^\complement=X\in \T$.
 		Therefore, $X$ and $\emptyset$ are closed sets in $X$.
-		\item Consider the family $\{A_i\}_{i\in I}$, with $A_i$ closed sets in $X$, i.e. $A_i^\complement\in T$ $\Then$ $\left(\bigcup_{i\in I}A_i^\complement\right)\in \T$, by hypothesis. Consider now $A=\bigcap_{i\in I}A_i$ $\Then$ $A^\complement = \left(\bigcap_{i\in I} A_i \right)^\complement=\bigcup_{i\in I}A_i^\complement$, by using the De Morgan's laws. Therefore, $A^\complement\in \T$ $\Then$ $A$ is a closed set in $X$.
+		\item Consider the family $\{A_i\}_{i\in I}$, with $A_i$ closed sets in $X$, i.e. $A_i^\complement\in \T$ $\Then$ $\left(\bigcup_{i\in I}A_i^\complement\right)\in \T$, by hypothesis. Consider now $A=\bigcap_{i\in I}A_i$ $\Then$ $A^\complement = \left(\bigcap_{i\in I} A_i \right)^\complement=\bigcup_{i\in I}A_i^\complement$, by using the De Morgan's laws. Therefore, $A^\complement\in \T$ $\Then$ $A$ is a closed set in $X$.
 		\item Consider $A,B\subset X$ two closed sets, which means that $A^\complement, B^\complement\in \T$ $\Then$ $(A^\complement\cap B^\complement)\in \T$, by hypothesis. Consider now $D=(A\cup B)$, hence $D^\complement = (A\cup B)^\complement = (A^\complement \cap B^\complement)\in \T$, by using the De Morgan's laws. Therefore, $D^\complement\in \T$ $\Then$ $D$ is a closed set in $X$.
 	\end{enumerate}
 	With this, it is proved that closed sets in a topological space satisfy dual properties to those of open sets.
@@ -882,7 +867,7 @@ Another interesting result that can be derived from the definition of closed set
 
 \begin{theorem}
 	\label{th:t2-diagonal}
-	A topological space $(X,\T)$ is a $T_2$ space \iff\ the diagonal set in $X^2=X\times X$, $\Delta=\setdef{(x,x)\in X^2}{x\in X}$ is closed.
+	A topological space $(X,\T)$ is a $T_2$ space \iff\ the diagonal set $\Delta=\setdef{(x,x)\in X^2}{x\in X}$ is closed in $X^2=X\times X$
 \end{theorem}
 \begin{proof}
 Let us prove both implications:
@@ -932,7 +917,7 @@ This remark leads us to the following result:
 The following result is self-evident from the definition of interior and closure:
 \begin{lemma}
 	\label{lem:interior-open-closure-closed}
-	Let $(X, \T)$ be a topological space, and consider $A,B\subset X$. Then, $\interior{A} = A$ \iff\ $A$ is open, and $\closure{A} = A$ \iff\ $A$ is closed.
+	Let $(X, \T)$ be a topological space, and consider $A\subset X$. Then, $\interior{A} = A$ \iff\ $A$ is open, and $\closure{A} = A$ \iff\ $A$ is closed.
 \end{lemma}
 The proof of the previous result is a trivial consequence of the definitions of interior and closure, which is why we leave it to the reader. The following result is an interesting and useful relation between the interior and the closure of the union and intersection of sets, which will be useful for later results:
 \begin{lemma}
@@ -960,7 +945,7 @@ The following result establishes the relation between the interior and the closu
 
 \begin{theorem}
 	\label{th:interior-closure-complement-relations}
-	Let $(X,\T)$ be a topological space, and consider $A, B\subset X$. The following statements hold true:
+	Let $(X,\T)$ be a topological space, and consider $A\subset X$. The following statements hold true:
 	\begin{itemize}
 		\item $\closure{X\setminus A}$ = $X\setminus\interior{A}$, i.e. $\mathrm{cl}(A^\complement)=\mathrm{int}^\complement(A)$.
 		\item $\Interior{X\setminus A}$ = $X\setminus\closure{A}$, i.e. $\mathrm{int}(A^\complement)=\mathrm{cl}^\complement(A)$.
@@ -1009,7 +994,7 @@ In other words, $x$ is an interior point of $A$ \iff\ $x$ is surrounded by point
 \end{proof}
 
 \begin{remark}
-	The interior points of $A$ are those with a neighbourhood contained in $A$, whilst the closure points of $A$ are those whih are \emph{adhered} to $A$ in the sense that $A$ intersects every neighbourhood of such points.
+	The interior points of $A$ are those with a neighbourhood contained in $A$, whilst the closure points of $A$ are those which are \emph{adhered} to $A$ in the sense that $A$ intersects every neighbourhood of such points.
 \end{remark}
 
 Having established the notions of interior and closure, and how they relate to each other, we can now proceed and generalise such concepts to product spaces, i.e. cartesian products of topological spaces with the Tychonoff product topology.
@@ -1031,7 +1016,7 @@ We can proceed with the proof of the inclusion in both directions:
 Given that $X_j\setminus \closure{Y_j}$ is open in $X_j$, $\pi^{-1}_j[X\setminus\closure{Y_j}]$ is open in $X$, which means that $\pi^{-1}_j[\closure{Y_j}]$ is closed in $X$. Given that $\prod_{i\in I}\closure{Y_i}=\bigcap_{j\in I}\pi^{-1}_j[\closure{Y_j}]$ $\Then$  $\prod_{i\in I}\closure{Y_i}$ is closed because is the intersection of closed sets in $X$ (see~\thref{lem:toplogy-closed-sets}). This implies that
 $\closure{\prod_{i\in I}Y_i}\subset\prod_{i\in I}\closure{Y_i}$, since $\closure{\prod_{i\in I}Y_i}$ is the smallest closed set containing $\prod_{i\in I}Y_i$, and $\prod_{i\in I}Y_i\subset\prod_{i\in I}\closure{Y_i}$ which is closed, so $\prod_{i\in I}Y_i\subset \closure{\prod_{i\in I} Y_i}\subset \prod_{i\in I}\closure{Y_i}$.
 \item[$\boxed{\supset}$] Conversely, let $y\in \prod_{i\in I}\closure{Y}_i$, we want to prove that it is also in the closure $\closure{Y}=\closure{\prod_{i\in I} Y_i}$.
-For this we are going to use the recently proved result of \lemref{lem:interior-closure-points}, i.e. we are going to prove that every neighbourhood of $y$ has a non-empty intersection with $\prod_{i\in I}Y_i$. We can take an open base neighbourhood $U=\prod_{i\in I} A_i$, such that $\exists  I_0\subset I$:
+For this we are going to use the recently proved result of \lemref{lem:interior-closure-points}, i.e. we are going to prove that every neighbourhood of $y$ has a non-empty intersection with $\prod_{i\in I}Y_i$. We can take a base neighbourhood $U=\prod_{i\in I} A_i$, such that $\exists  I_0\subset I$:
 \[
 	A_i = \begin{cases}
 		B_i \in \B_{i} & \text{if } i\in I_0\\
@@ -1178,7 +1163,7 @@ The following two results are two useful characterisations of regular spaces:
 
 \begin{theorem}
 	\label{th:regular-space-characterisation-1}
-	Let $(X, \T)$ be a $T_1$ space, then it is regular \iff\ $\forall x\in X$ and every neighbourhood $V\subset X$ of $x$, $\exists U\subset X$ also neighbourhood of $x$ such that $x\in U\subset \closure{U}\subset V$. In fact, this also holds true for any neighbourhood $V$ belonging to a subbase of the topology.
+	Let $(X, \T)$ be a $T_1$ space, then it is regular \iff\ $\forall x\in X$ and every $V\subset X$ neighbourhood of $x$, $\exists U\subset X$ also neighbourhood of $x$ such that $x\in U\subset \closure{U}\subset V$. In fact, this also holds true for any neighbourhood $V$ belonging to a subbase of the topology.
 \end{theorem}
 
 \begin{proof}
